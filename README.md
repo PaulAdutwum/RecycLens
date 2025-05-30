@@ -1,4 +1,4 @@
-# Smart Waste Classifier
+# RecycLens
 
 **Instantly sort your waste with AI-powered image classification**
 
