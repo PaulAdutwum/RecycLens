@@ -15,7 +15,7 @@ export default function Welcome() {
         <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
           Use cutting-edge AI to instantly identify your waste. Snap a photo
           with your camera or upload an image, and our CNN classifier will tell
-          you if it's paper, plastic, metal, organic, and more.
+          you whether it is a paper, plastic, metal, organic, and more.
         </p>
         <div className="bg-green-50 border border-green-200 rounded-2xl p-8 mt-12">
           <h3 className="text-2xl font-semibold text-green-800 mb-4">
