@@ -9,7 +9,7 @@ from torchvision import transforms
 
 app = FastAPI(title="Waste Classifier API")
 
-# Enable CORS so that our frontend (Next.js at localhost:3000) can call this API
+# Enable CORS so that frontend (Next.js at localhost:3000) can call this API
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],  # frontend origin
