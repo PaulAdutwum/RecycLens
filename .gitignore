@@ -1,3 +1,19 @@
+# Virtual env
+waste-env/
+
+# Node modules
+node_modules/
+waste-ui/node_modules/
+
+# OS / editor
+.DS_Store
+__pycache__/
+*.pyc
+
+# Application files
+
+
+
 node_modules
 # .gitignore
 waste-env/

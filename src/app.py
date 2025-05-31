@@ -1,11 +1,14 @@
-# src/app.py
-
+from dotenv import load_dotenv
+load_dotenv()
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from io import BytesIO
 from PIL import Image
 import torch
 from torchvision import transforms
+
+from src.db import predictions_collection  
+from datetime import datetime  
 
 app = FastAPI(title="Waste Classifier API")
 
@@ -51,7 +54,18 @@ async def classify_image(file: UploadFile = File(...)):
         probs = torch.softmax(outputs, dim=1)[0]
         confidence, idx = torch.max(probs, 0)
 
+    label = classes[idx]
+    confidence_score = round(float(confidence), 4)
+
+    # --- Save the prediction to MongoDB (non-blocking, doesn’t affect your API)
+    await predictions_collection.insert_one({
+        "label": label,
+        "confidence": confidence_score,
+        "timestamp": datetime.utcnow(),
+        # You can also log: "filename": file.filename, etc.
+    })
+
     return {
-        "label": classes[idx],
-        "confidence": round(float(confidence), 4)
+        "label": label,
+        "confidence": confidence_score
     }

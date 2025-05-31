@@ -105,77 +105,152 @@ export default function Classifier({ apiUrl }: { apiUrl: string }) {
   };
 
   return (
-    <section id="classifier" className="mb-12 px-4 md:px-0">
-      <h2 className="text-2xl font-semibold text-green-700 mb-4">
-        Classify Your Waste
-      </h2>
-      <div className="flex flex-col md:flex-row items-start md:items-center">
-        {/* Preview box */}
-        <div className="w-56 h-56 border border-gray-300 p-2 mb-4 md:mb-0 flex items-center justify-center bg-gray-50">
-          {mode === "camera" ? (
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              muted
-              className="w-full h-full object-cover rounded"
-            />
-          ) : capturedImage ? (
-            <img
-              src={capturedImage}
-              className="w-full h-full object-cover rounded"
-              alt="Captured"
-            />
-          ) : uploadedImage ? (
-            <img
-              src={uploadedImage}
-              className="w-full h-full object-cover rounded"
-              alt="Uploaded"
-            />
-          ) : (
-            <span className="text-gray-400">No image</span>
-          )}
+    <section id="classifier" className="py-16 md:py-20">
+      <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Classify Your Waste
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Use your camera or upload an image to get instant AI-powered waste
+            classification
+          </p>
         </div>
 
-        {/* Controls */}
-        <div className="md:ml-8 flex flex-col gap-3">
-          <input
-            type="file"
-            ref={fileInputRef}
-            accept="image/*"
-            onChange={handleFileUpload}
-            className="hidden"
-          />
-          <div className="flex gap-3">
-            <button
-              onClick={startCamera}
-              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-            >
-              Use Camera
-            </button>
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
-            >
-              Upload Image
-            </button>
-          </div>
-          <button
-            onClick={captureAndClassify}
-            disabled={loading || !mode}
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
-          >
-            {loading ? "Analyzing..." : "Classify"}
-          </button>
-          {result && (
-            <div className="mt-4">
-              <p className="text-lg font-bold">{result.label}</p>
-              <p className="text-sm text-gray-600">
-                {(result.confidence * 100).toFixed(1)}%
-              </p>
+        {/* Main Content */}
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+          <div className="p-8">
+            <div className="flex flex-col lg:flex-row items-center gap-8">
+              {/* Preview Box */}
+              <div className="flex-shrink-0">
+                <div className="w-80 h-80 border-2 border-dashed border-gray-300 p-4 rounded-2xl flex items-center justify-center bg-gray-50 shadow-inner">
+                  {mode === "camera" ? (
+                    <video
+                      ref={videoRef}
+                      autoPlay
+                      playsInline
+                      muted
+                      className="w-full h-full object-cover rounded-xl shadow-lg"
+                    />
+                  ) : capturedImage ? (
+                    <img
+                      src={capturedImage}
+                      className="w-full h-full object-cover rounded-xl shadow-lg"
+                      alt="Captured"
+                    />
+                  ) : uploadedImage ? (
+                    <img
+                      src={uploadedImage}
+                      className="w-full h-full object-cover rounded-xl shadow-lg"
+                      alt="Uploaded"
+                    />
+                  ) : (
+                    <div className="text-center">
+                      <div className="text-6xl text-gray-300 mb-4">📷</div>
+                      <span className="text-gray-400 text-lg font-medium">
+                        No image selected
+                      </span>
+                      <p className="text-gray-300 text-sm mt-2">
+                        Choose camera or upload to begin
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Controls Section */}
+              <div className="flex-1 w-full lg:w-auto">
+                <div className="space-y-6">
+                  {/* Hidden File Input */}
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    accept="image/*"
+                    onChange={handleFileUpload}
+                    className="hidden"
+                  />
+
+                  {/* Action Buttons */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button
+                      onClick={startCamera}
+                      className="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-4 rounded-xl hover:from-green-700 hover:to-green-800 transition-all duration-200 shadow-lg hover:shadow-xl font-semibold text-lg flex items-center justify-center gap-3 group"
+                    >
+                      <span className="text-2xl group-hover:scale-110 transition-transform duration-200"></span>
+                      Use Camera
+                    </button>
+
+                    <button
+                      onClick={() => fileInputRef.current?.click()}
+                      className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-8 py-4 rounded-xl hover:from-purple-700 hover:to-purple-800 transition-all duration-200 shadow-lg hover:shadow-xl font-semibold text-lg flex items-center justify-center gap-3 group"
+                    >
+                      <span className="text-2xl group-hover:scale-110 transition-transform duration-200"></span>
+                      Upload Image
+                    </button>
+                  </div>
+
+                  {/* Classify Button */}
+                  <button
+                    onClick={captureAndClassify}
+                    disabled={loading || !mode}
+                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-5 rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl font-bold text-xl flex items-center justify-center gap-3 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed disabled:shadow-none group"
+                  >
+                    {loading ? (
+                      <>
+                        <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Analyzing...
+                      </>
+                    ) : (
+                      <>
+                        <span className="text-2xl group-hover:scale-110 transition-transform duration-200">
+                          🔍
+                        </span>
+                        Classify Image
+                      </>
+                    )}
+                  </button>
+
+                  {/* Results Section */}
+                  {result && (
+                    <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+                      <div className="text-center">
+                        <div className="text-4xl mb-3">✅</div>
+                        <h3 className="text-xl font-bold text-green-800 mb-2">
+                          Results
+                        </h3>
+                        <p className="text-2xl font-bold text-gray-900 mb-2">
+                          {result.label}
+                        </p>
+                        <div className="flex items-center justify-center gap-2">
+                          <span className="text-lg font-semibold text-green-600">
+                            {(result.confidence * 100).toFixed(1)}%
+                          </span>
+                          <span className="text-sm text-gray-600">
+                            confidence
+                          </span>
+                        </div>
+                        <div className="mt-3 bg-gray-200 rounded-full h-3 overflow-hidden">
+                          <div
+                            className="bg-green-600 h-full transition-all duration-1000 ease-out rounded-full"
+                            style={{ width: `${result.confidence * 100}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Error Message */}
+                  {message && (
+                    <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center gap-3">
+                      <span className="text-red-600 text-xl">⚠️</span>
+                      <p className="text-red-800 font-medium">{message}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
-          )}
-          {message && <p className="mt-2 text-red-600">{message}</p>}
+          </div>
         </div>
       </div>
     </section>
