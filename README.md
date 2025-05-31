@@ -16,10 +16,10 @@ A web application that uses a Convolutional Neural Network (CNN) to classify was
 
 ## 🚀 Features
 - **Frontend:** responsive React app ([hosted on Vercel](https://recyc-lens.vercel.app/))
-- * **Backend:** FastAPI REST API
+- **Backend:** FastAPI REST API
 - **Responsive UI**: Sleek white & green design, mobile-first layout powered by Tailwind CSS.  
--  **AI Model:** Trained on [Kaggle Waste Classification Dataset](https://www.kaggle.com/datasets)
--  * **Database:** MongoDB (for user logins and storing classified images/history)
+- **AI Model:** Trained on [Kaggle Waste Classification Dataset](https://www.kaggle.com/datasets)
+- **Database:** MongoDB (for user logins and storing classified images/history)
 
 ---
 
