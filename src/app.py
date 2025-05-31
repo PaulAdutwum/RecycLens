@@ -15,7 +15,7 @@ app = FastAPI(title="Waste Classifier API")
 # Enable CORS so that frontend (Next.js at localhost:3000) can call this API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # frontend origin
+    allow_origins=["http://localhost:3000",  "http://localhost:3001",],  # frontend origin
     allow_methods=["*"],
     allow_headers=["*"],
 )
