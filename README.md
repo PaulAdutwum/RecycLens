@@ -1,4 +1,4 @@
-# ♻️RECYCLENS
+# RECYCLENS
 
 
 🚀
@@ -44,7 +44,7 @@ A web application that uses a Convolutional Neural Network (CNN) to classify was
 
 ---
 
-## 🗃️ Database Setup
+## 🗃️
 
 * Uses **MongoDB** for storing user info and classified image logs.
 
@@ -101,7 +101,7 @@ You’ll need **Python 3.9+** and **pip**. Clone this repo and follow these step
    * The API will run at [http://localhost:8000](http://localhost:8000)
 
 
-## 🧪 Development Notes
+## Notes
 
 * The AI model can be retrained using scripts provided in the `src/train/` folder.
 * Model accuracy, speed, and supported waste types can be improved with more data and training.
