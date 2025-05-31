@@ -16,9 +16,8 @@ export default function FutureEnhancements() {
           </h2>
 
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            We're constantly working on exciting new features and improvements
-            to make RECYCLENS even better. Stay tuned for amazing updates that
-            will enhance your waste classification experience!
+            We are working on exciting new features and improvements to make
+            RECYCLENS even better. Stay tuned for amazing updates,
           </p>
 
           <div className="mt-8 flex justify-center">

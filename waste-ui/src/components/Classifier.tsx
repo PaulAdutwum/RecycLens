@@ -1,7 +1,7 @@
-// waste-ui/src/app/components/Classifier.tsx
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 export default function Classifier({ apiUrl }: { apiUrl: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -134,16 +134,22 @@ export default function Classifier({ apiUrl }: { apiUrl: string }) {
                       className="w-full h-full object-cover rounded-xl shadow-lg"
                     />
                   ) : capturedImage ? (
-                    <img
+                    <Image
                       src={capturedImage}
                       className="w-full h-full object-cover rounded-xl shadow-lg"
                       alt="Captured"
+                      width={320}
+                      height={320}
+                      unoptimized
                     />
                   ) : uploadedImage ? (
-                    <img
+                    <Image
                       src={uploadedImage}
                       className="w-full h-full object-cover rounded-xl shadow-lg"
                       alt="Uploaded"
+                      width={320}
+                      height={320}
+                      unoptimized
                     />
                   ) : (
                     <div className="text-center">

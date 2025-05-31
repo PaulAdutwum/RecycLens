@@ -3,7 +3,6 @@ import React from "react";
 import Header from "./Header";
 import Welcome from "./Welcome";
 import HowItWorks from "./HowItWorks";
-import Mission from "./Mission";
 import Classifier from "./Classifier";
 import FutureEnhancements from "./FutureEnhancement";
 import Feedback from "./Feedback";
