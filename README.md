@@ -9,15 +9,19 @@ A web application that uses a Convolutional Neural Network (CNN) to classify was
 ## 🌐 Live Demo
 
 * [Frontend (Vercel)](https://recyc-lens.vercel.app/)
-
-*Note: Image classification will only work if you run the backend server locally and connect the frontend to it (see below).*
-
 ---
+
+##  Machine Learning Model
+
+- **Architecture:** ResNet-18 Convolutional Neural Network (CNN), fine-tuned via transfer learning for waste classification.
+- **Frameworks:** PyTorch (with TorchVision for data augmentation and pre-trained models), scikit-learn (evaluation), pandas/numpy (data wrangling).
+- **Exported as:** TorchScript for seamless FastAPI integration.
+- **Training:** Leveraged a labeled waste image dataset from Kaggle, with real-world classes such as plastic, glass, cardboard, metal, etc.
+- **Approach:** Data augmentation (random crop, flip, normalize), transfer learning (final classification layers retrained), regular validation for best performance.
 
 ## 🚀 Features
 - **Frontend:** responsive React app ([hosted on Vercel](https://recyc-lens.vercel.app/))
 - **Backend:** FastAPI REST API
-- **Responsive UI**: Sleek white & green design, mobile-first layout powered by Tailwind CSS.  
 - **AI Model:** Trained on [Kaggle Waste Classification Dataset](https://www.kaggle.com/datasets)
 - **Database:** MongoDB (for user logins and storing classified images/history)
 
