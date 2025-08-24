@@ -24,8 +24,7 @@ A web application that uses a Convolutional Neural Network (CNN) to classify was
 - **Backend:** FastAPI REST API
 - **AI Model:** Trained on [Kaggle Waste Classification Dataset](https://www.kaggle.com/datasets)
 - **Database:** MongoDB (for user logins and storing classified images/history)
-
----
+____
 
 
 ## Important
@@ -129,3 +128,4 @@ waste-classifier/
 │   └── ...
 └── README.md
 ```
+
