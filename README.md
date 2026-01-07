@@ -2,7 +2,7 @@
 
 
 🚀
-A web application that uses a Convolutional Neural Network (CNN) to classify waste items into 12 categories (e.g., paper, plastic, metal, organic) in real time. Built with PyTorch, FastAPI, and Next.js, this tool helps reduce recycling contamination and promotes environmental sustainability through intuitive technology.
+Designed and deployed a real-time computer vision platform that classifies waste into 12 material categories (paper, plastic, metal, organic, etc.) using a custom-trained convolutional neural network. Built with PyTorch, FastAPI, and Next.js, the system transforms live camera input into actionable recycling guidance, helping reduce contamination rates and support community-scale environmental sustainability.
 
 ---
 
@@ -128,4 +128,5 @@ waste-classifier/
 │   └── ...
 └── README.md
 ```
+
 
