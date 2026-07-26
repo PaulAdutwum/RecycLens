@@ -1,12 +1,25 @@
-// waste-ui/src/app/page.tsx
-import React from "react";
-import SmartWasteApp from "../components/SmartWasteApp";
-
-export const metadata = {
-  title: "Smart Waste Classifier",
-  description: "Instantly sort waste with AI-driven classification.",
-};
+import Nav from "@/components/Nav";
+import Hero from "@/components/Hero";
+import Scanner from "@/components/Scanner";
+import Dashboard from "@/components/Dashboard";
+import HowItWorks from "@/components/HowItWorks";
+import Categories from "@/components/Categories";
+import Roadmap from "@/components/Roadmap";
+import Footer from "@/components/Footer";
 
 export default function Page() {
-  return <SmartWasteApp apiUrl="http://localhost:8000/classify" />;
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Nav />
+      <main className="flex-grow">
+        <Hero />
+        <Scanner />
+        <Dashboard />
+        <HowItWorks />
+        <Categories />
+        <Roadmap />
+      </main>
+      <Footer />
+    </div>
+  );
 }

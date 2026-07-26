@@ -1,4 +1,4 @@
-// File: /Users/pauladutwum/Documents/Myprojects/Waste_Classifier/waste-ui/src/app/layout.tsx
+// File: /Users/pauladutwum/Documents/Myprojects/RecycLens/waste-ui/src/app/layout.tsx
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
