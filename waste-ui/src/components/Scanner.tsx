@@ -133,7 +133,11 @@ export default function Scanner() {
                 type="file"
                 accept="image/*"
                 className="hidden"
-                onChange={(e) => loadFile(e.target.files?.[0])}
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  e.target.value = "";
+                  loadFile(file);
+                }}
               />
 
               <div
