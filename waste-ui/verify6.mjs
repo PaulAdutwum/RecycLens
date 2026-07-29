@@ -1,0 +1,16 @@
+import { chromium } from "playwright";
+const OUT = "/private/tmp/claude-501/-Users-pauladutwum-Documents-Myprojects-RecycLens/a5fbfb86-a441-43d9-8cd2-c557b52a2d13/scratchpad";
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1440, height: 1400 } });
+const errors = [];
+page.on("console", (m) => { if (m.type() === "error") errors.push(m.text()); });
+page.on("pageerror", (e) => errors.push(`pageerror: ${e.message}`));
+await page.goto("http://localhost:3000", { waitUntil: "networkidle" });
+await page.locator("#categories").scrollIntoViewIfNeeded();
+await page.waitForTimeout(300);
+await page.screenshot({ path: `${OUT}/v6-categories-1.png` });
+await page.mouse.wheel(0, 700);
+await page.waitForTimeout(200);
+await page.screenshot({ path: `${OUT}/v6-categories-2.png` });
+await browser.close();
+console.log("ERRORS:", JSON.stringify(errors));
