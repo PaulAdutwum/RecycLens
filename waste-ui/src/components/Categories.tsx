@@ -1,25 +1,19 @@
-import { CheckCircle2, AlertTriangle, XCircle } from "lucide-react";
 import { WASTE_CATEGORIES } from "@/lib/wasteCategories";
 import type { DisposalStatus } from "@/lib/types";
 import SectionHeading from "./ui/SectionHeading";
 import StatusBreakdownChart from "./categories/StatusBreakdownChart";
 
-const STATUS_META: Record<
-  DisposalStatus,
-  { label: string; color: string; icon: typeof CheckCircle2 }
-> = {
-  recyclable: { label: "Recyclable", color: "#22C55E", icon: CheckCircle2 },
-  special: { label: "Special Disposal", color: "#EAB308", icon: AlertTriangle },
-  landfill: { label: "Landfill", color: "#EF4444", icon: XCircle },
+const STATUS_META: Record<DisposalStatus, { label: string; color: string }> = {
+  recyclable: { label: "Recyclable", color: "#4ADE80" },
+  special: { label: "Special Disposal", color: "#EAB308" },
+  landfill: { label: "Landfill", color: "#EF4444" },
 };
 
 const STATUS_ORDER: DisposalStatus[] = ["recyclable", "special", "landfill"];
 
-const GROUPS = STATUS_ORDER.map((status) => ({
-  status,
-  ...STATUS_META[status],
-  items: WASTE_CATEGORIES.filter((c) => c.status === status),
-}));
+const ROWS = STATUS_ORDER.flatMap((status) =>
+  WASTE_CATEGORIES.filter((c) => c.status === status)
+);
 
 export default function Categories() {
   return (
@@ -35,32 +29,42 @@ export default function Categories() {
           <StatusBreakdownChart />
         </div>
 
-        <div className="grid md:grid-cols-3 gap-x-8 gap-y-10">
-          {GROUPS.map(({ status, label, color, icon: GroupIcon, items }) => (
-            <div key={status}>
-              <div className="flex items-center gap-2 pb-3 mb-1 border-b border-white/10">
-                <GroupIcon className="w-4 h-4" style={{ color }} aria-hidden />
-                <h3 className="text-sm font-semibold text-text-primary">{label}</h3>
-                <span className="text-xs text-text-secondary ml-auto">{items.length}</span>
-              </div>
-              <ul>
-                {items.map(({ id, name, instruction, icon: Icon }) => (
-                  <li
-                    key={id}
-                    className="flex items-start gap-3 py-3 border-b border-white/5 last:border-none"
-                  >
-                    <Icon className="w-4 h-4 text-text-secondary mt-0.5 shrink-0" aria-hidden />
-                    <div>
-                      <p className="text-sm font-medium text-text-primary">{name}</p>
-                      <p className="text-xs text-text-secondary mt-0.5 leading-relaxed">
-                        {instruction}
-                      </p>
-                    </div>
-                  </li>
+        <div className="card-surface rounded-2xl overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-white/10 text-left">
+                  <th className="py-3 px-6 font-medium text-text-secondary text-xs uppercase tracking-wide">
+                    Category
+                  </th>
+                  <th className="py-3 px-6 font-medium text-text-secondary text-xs uppercase tracking-wide">
+                    Status
+                  </th>
+                  <th className="py-3 px-6 font-medium text-text-secondary text-xs uppercase tracking-wide">
+                    Disposal Instructions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {ROWS.map(({ id, name, status, instruction }) => (
+                  <tr key={id} className="border-b border-white/5 last:border-none">
+                    <td className="py-3 px-6 align-top font-medium text-text-primary whitespace-nowrap">
+                      {name}
+                    </td>
+                    <td
+                      className="py-3 px-6 align-top whitespace-nowrap text-xs font-medium"
+                      style={{ color: STATUS_META[status].color }}
+                    >
+                      {STATUS_META[status].label}
+                    </td>
+                    <td className="py-3 px-6 align-top text-text-secondary leading-relaxed">
+                      {instruction}
+                    </td>
+                  </tr>
                 ))}
-              </ul>
-            </div>
-          ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
